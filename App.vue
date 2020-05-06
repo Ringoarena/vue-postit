@@ -75,7 +75,7 @@ header {
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     max-width: 1024px;
-    margin: 0 auto;
+    margin: 1rem auto 0 auto;
 }
 
 .listView {
