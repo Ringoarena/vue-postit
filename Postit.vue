@@ -1,14 +1,31 @@
 <template>
 <article>
-    <button v-on:click="toggleEditMode">Edit</button>
-    <input type="text" v-bind:class="{hidden: !editMode}" v-model="newContent">
-    <p v-bind:class="{hidden: editMode}">{{propsContent}}</p>
+    <button
+        v-on:click="toggleEditMode"
+        >Edit
+    </button>
+    <button
+        v-on:click="fireSubmitEvent"
+        >Submit
+    </button>
+    
+    <input 
+        type="text"
+        v-bind:class="{hidden: !editMode}"
+        v-model="newContent"
+    >
+    <p>{{propsId}}</p>
+    <p
+        v-bind:class="{hidden: editMode}">
+        {{propsContent}}
+    </p>
 </article>
 </template>
 
 <script>
 export default {
     props: {
+        propsId: Number,
         propsContent: String
     },
     data(){
@@ -21,8 +38,8 @@ export default {
         toggleEditMode(){
             this.editMode = !this.editMode;
         },
-        fireEditEvent(){
-            this.$emit('editEvent', this.newContent);
+        fireSubmitEvent(){
+            this.$emit('submitEvent', {id: this.propsId, data: this.newContent});
         }
     }
 

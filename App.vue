@@ -13,7 +13,9 @@
             <postit
                 v-bind:key="index"
                 v-for="(note, index) in notes"
+                v-bind:propsId="note.id"
                 v-bind:propsContent="note.content"
+                v-on:submitEvent="submitEventHandler"
             />
         </section>
     </main>
@@ -31,11 +33,8 @@ export default {
     data(){
         return {
             singleColumn: false,
-            notes: [
-                {content: 'hardcoded content'},
-                {content: 'hardcoded content'},
-                {content: 'hardcoded content'}
-            ]
+            idCounter: 1,
+            notes: []
         }
     },
     methods: {
@@ -43,7 +42,11 @@ export default {
             this.singleColumn = !this.singleColumn;
         },
         addNote(){
-            this.notes.push({content: 'placeholder content'});
+            this.notes.push({id: this.idCounter++, content: 'placeholder content'});
+        },
+        submitEventHandler(payload){
+            let foundNote = this.notes.find(note => note.id == payload.id);
+            foundNote.content = payload.data;
         }
     }
 }
