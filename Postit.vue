@@ -12,12 +12,16 @@
         v-on:click="fireSubmitEvent"
         v-bind:class="{hidden: !editMode}"
     >Submit</button>
-    
     <input 
         type="text"
         v-bind:class="{hidden: !editMode}"
         v-model="newContent"
     >
+    <select name="colors" v-bind:class="{hidden: !editMode}">
+        <option value="black">Black</option>
+        <option value="red">Red</option>
+        <option value="blue">Blue</option>
+    </select>
     <p>id: {{propsId}}</p>
     <p
         v-bind:class="{hidden: editMode}">
@@ -50,7 +54,6 @@ export default {
             this.$emit('deleteEvent', {id: this.propsId});
         }
     }
-
 }
 </script>
 

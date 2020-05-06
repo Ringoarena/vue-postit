@@ -1,12 +1,14 @@
 <template>
 <div class="wrapper">
     <header>
+        <div class="buttons">
         <button
             v-on:click="toggleView"
-        >L/C</button>
+        >List / Column</button>
         <button
             v-on:click="addNote"
         >Add Note</button>
+        </div>
     </header>
     <main>
         <section class="postit-container" v-bind:class="{listView: singleColumn}">
@@ -43,7 +45,7 @@ export default {
             this.singleColumn = !this.singleColumn;
         },
         addNote(){
-            this.notes.push({id: this.idCounter++, content: 'placeholder content'});
+            this.notes.push({id: this.idCounter++, content: 'hardcoded content'});
         },
         submitEventHandler(payload){
             let foundNote = this.notes.find(note => note.id == payload.id);
@@ -60,14 +62,20 @@ export default {
 
 <style>
 header {
-    border-bottom: 2px solid black;
+    border-bottom: 5px solid black;
+    padding-bottom: 0.5rem;
+}
+
+.buttons{
+    max-width: 1024px;
+    margin: 0 auto;
 }
 .postit-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
-    /* background-color: rgb(216, 216, 216); */
-    margin-top: 1rem;
+    max-width: 1024px;
+    margin: 0 auto;
 }
 
 .listView {
