@@ -3,20 +3,22 @@
     <button
         v-on:click="toggleEditMode"
         v-bind:class="{hidden: editMode}"
-        >Edit
-    </button>
+    >Edit</button>
+    <button
+        v-on:click="fireDeleteEvent"
+        v-bind:class="{hidden: editMode}"
+    >Delete</button>
     <button
         v-on:click="fireSubmitEvent"
         v-bind:class="{hidden: !editMode}"
-        >Submit
-    </button>
+    >Submit</button>
     
     <input 
         type="text"
         v-bind:class="{hidden: !editMode}"
         v-model="newContent"
     >
-    <p>{{propsId}}</p>
+    <p>id: {{propsId}}</p>
     <p
         v-bind:class="{hidden: editMode}">
         {{propsContent}}
@@ -43,6 +45,9 @@ export default {
         fireSubmitEvent(){
             this.$emit('submitEvent', {id: this.propsId, data: this.newContent});
             this.toggleEditMode();
+        },
+        fireDeleteEvent(){
+            this.$emit('deleteEvent', {id: this.propsId});
         }
     }
 
@@ -52,6 +57,7 @@ export default {
 <style>
 article{
     border: 1px solid black;
+    padding: 0.5rem;
 }
 
 .hidden{

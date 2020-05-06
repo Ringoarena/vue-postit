@@ -16,6 +16,7 @@
                 v-bind:propsId="note.id"
                 v-bind:propsContent="note.content"
                 v-on:submitEvent="submitEventHandler"
+                v-on:deleteEvent="deleteEventHandler"
             />
         </section>
     </main>
@@ -47,6 +48,11 @@ export default {
         submitEventHandler(payload){
             let foundNote = this.notes.find(note => note.id == payload.id);
             foundNote.content = payload.data;
+        },
+        deleteEventHandler(payload){
+            // let indexToDelete = this.notes.findIndex(note => note.id == payload.id);
+            // this.notes.splice(indexToDelete, 1);
+            this.notes = this.notes.filter(note => note.id != payload.id);
         }
     }
 }
