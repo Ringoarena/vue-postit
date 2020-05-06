@@ -2,10 +2,11 @@
 <article>
     <button
         v-on:click="toggleEditMode"
+        v-bind:class="{hidden: editMode}"
         >Edit
     </button>
     <button
-        v-on:click="fireSubmitEvent, toggleEditMode"
+        v-on:click="fireSubmitEvent"
         v-bind:class="{hidden: !editMode}"
         >Submit
     </button>
@@ -41,6 +42,7 @@ export default {
         },
         fireSubmitEvent(){
             this.$emit('submitEvent', {id: this.propsId, data: this.newContent});
+            this.toggleEditMode();
         }
     }
 
