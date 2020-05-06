@@ -5,7 +5,8 @@
         >Edit
     </button>
     <button
-        v-on:click="fireSubmitEvent"
+        v-on:click="fireSubmitEvent, toggleEditMode"
+        v-bind:class="{hidden: !editMode}"
         >Submit
     </button>
     
